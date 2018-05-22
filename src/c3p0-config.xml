@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<c3p0-config>
+	<default-config>
+		<property name="driverClass">oracle.jdbc.driver.OracleDriver</property>
+		<property name="jdbcUrl">jdbc:oracle:thin:@//172.16.50.67:1521/orcl</property>
+		<property name="user">e_channel</property>
+		<property name="password">e_channel_test</property>
+		<property name="initialPoolSize">10</property>
+		<property name="maxIdleTime">20</property>
+		<property name="maxPoolSize">20</property>
+		<property name="minPoolSize">6</property>
+	</default-config>
+</c3p0-config>
