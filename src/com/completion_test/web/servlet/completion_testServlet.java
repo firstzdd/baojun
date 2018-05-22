@@ -39,9 +39,7 @@ public class completion_testServlet extends HttpServlet {
 		clent.setUser_agent(request.getHeader("User-Agent"));
 		clent.setContent_type(request.getContentType());
 		clent.setCreate_time(new Date());
-		//
-		//String responsestr = request.getMethod();
-		//response.getWriter().write(responsestr);
+	
 		clent.setId(UUIDUtil.getUUID());
 		completion_testServiceImpl cts = new completion_testServiceImpl();
 		//操作xml响应
@@ -61,8 +59,17 @@ public class completion_testServlet extends HttpServlet {
 				out.write("success:"+xml.toString()+"插入数据成功");//向客户端响应文本内容
 				out.close();
 			} else {
+				xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+		        xml.append("<response>\n");
+		        xml.append("<success>0</success>\n");
+		        xml.append("<failmailnums></failmailnums>\n");
+		        xml.append("<remark></remark>\n");
+		        xml.append("</response>");
+		        clent.setRequest_body(null);
+		        clent.setResponse_body(xml.toString());
+		        cts.addcompletion_test(clent);
 				PrintWriter out = response.getWriter();//得到一个字符输出流
-				out.write("插入数据失败1");//向客户端响应文本内容
+				out.write("插入数据失败");//向客户端响应文本内容
 				out.close();
 			}
 		} catch (Exception e) {
@@ -71,7 +78,7 @@ public class completion_testServlet extends HttpServlet {
 			out.close();
 			e.printStackTrace();
 		}
-	}
+}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

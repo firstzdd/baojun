@@ -21,9 +21,12 @@ public class completion_testDaoImpl implements completion_testDao {
 					clent.getRequest_uri(), clent.getRequest_body(), clent.getResponse_body(), clent.getUser_agent(),
 					clent.getContent_type(), new Timestamp(clent.getCreate_time().getTime()),clent.getId());
 		} catch(Exception e){
-			throw new RuntimeException(e);
+			return 0;
 		}
 	}
+
+	
+
 
 	public completion selectRequestBodyByRequest(String request_method, String request_uri) {
 		try{
